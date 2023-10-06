@@ -1,9 +1,10 @@
+import ExpenseDate from './ExpenseDate';
+import ExpenseDetails from './ExpenseDetails';
 function ExpenseItem(props)
 {
     return <div>
-        <div><h2>{props.title}</h2></div>
-        <div><h2>{props.amt}</h2></div>
-        <div><h2>{props.LocationofExpenditure}</h2></div>
+        <ExpenseDate date={props.date}/>
+        <ExpenseDetails title={props.title} amt={props.amt} location={props.location}/>
         </div>
 }
 export default ExpenseItem;
