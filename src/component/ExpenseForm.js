@@ -16,16 +16,25 @@ const ExpenseForm=()=>
     {
         setEnteredDate(e.target.value);
     }
+    const submit=(e)=>{
+     e.preventDefault();
+     const obj={
+        title:enteredTitle,
+        amt:enteredAmt,
+        date:new Date(enteredDate)
+     }
+     console.log(obj);
+    }
 return (
     <div>
-        <form>
+        <form onSubmit={submit}>
             <label>ExpenseTitle:</label>
         <input type="text" id="text" autoComplete="off" onChange={Titlehandler}/>
             <label>ExpenseAmt:</label>
         <input type="number" id="number" autoComplete="off" onChange={amthandler}/>
             <label>ExpenseDate:</label>
         <input type="date" id="date" autoComplete="off" onChange={datehandler}/>
-        <button>Submit</button>
+        <button >Submit</button>
         </form>
     </div>
 );
