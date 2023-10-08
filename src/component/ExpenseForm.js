@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-const ExpenseForm=()=>
+const ExpenseForm=(props)=>
 {
     const [enteredTitle,setEnteredTitle]=useState('');
     const [enteredAmt,setEnteredAmt]=useState('');
@@ -21,19 +21,24 @@ const ExpenseForm=()=>
      const obj={
         title:enteredTitle,
         amt:enteredAmt,
-        date:new Date(enteredDate)
+        date:new Date(enteredDate),
+        id:Math.random().toString()
      }
-     console.log(obj);
+     props.onAddEventListner(obj);
+     setEnteredTitle('');
+     setEnteredAmt('');
+     setEnteredDate('');
+     
     }
 return (
     <div>
         <form onSubmit={submit}>
             <label>ExpenseTitle:</label>
-        <input type="text" id="text" autoComplete="off" onChange={Titlehandler}/>
+        <input type="text" id="text" value={enteredTitle}autoComplete="off" onChange={Titlehandler}/>
             <label>ExpenseAmt:</label>
-        <input type="number" id="number" autoComplete="off" onChange={amthandler}/>
+        <input type="number" id="number" value={enteredAmt} autoComplete="off" onChange={amthandler}/>
             <label>ExpenseDate:</label>
-        <input type="date" id="date" autoComplete="off" onChange={datehandler}/>
+        <input type="date" id="date" value={enteredDate}autoComplete="off" onChange={datehandler}/>
         <button >Submit</button>
         </form>
     </div>
