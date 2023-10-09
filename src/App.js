@@ -15,16 +15,24 @@ const DummyExpenses = [
 ];
 
 const App = () => {
+  const [isediting,setisediting]=useState(false);
   const [expenses, setExpenses] = useState(DummyExpenses);
   const EventListnerHandler = (expense) => {
     setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];
     });
   };
+  const starteditinghandler=()=>{
+    setisediting(true);
+  }
+  const changeHandler=()=>{
+    setisediting(false);
+  }
   return (
     <div>
       <h2>ExpenseItem:</h2>
-      <ExpenseForm onAddEventListner={EventListnerHandler} />
+     {!isediting && <button onClick={starteditinghandler}>Add New Expense</button>}
+      {isediting&&<ExpenseForm setediting={changeHandler}onAddEventListner={EventListnerHandler} />}
       <Expenses items={expenses} />
       
     </div>
